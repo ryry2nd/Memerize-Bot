@@ -31,9 +31,12 @@ def log_in(driver: webdriver.Chrome):
 
 def main():
     driver = webdriver.Chrome('C:/Program Files/Google/Chrome/Application/chromedriver.exe')
-    driver.get("https://app.memrise.com/groups/")
+
+    driver.get("https://app.memrise.com/aprender/learn?course_id=6274442")
 
     log_in(driver)
+
+    button = driver.find_elements(By.XPATH, "//a[@class='btn btn-small btn-success big']")
 
     print("Here")
     while True:
