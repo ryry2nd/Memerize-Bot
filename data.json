@@ -1,0 +1,429 @@
+{
+    "version": 2,
+    "keys": [
+        "ans",
+        "question"
+    ],
+    "data": {
+        "524406641387191133": {
+            "question": "What is your name? (informal)",
+            "ans": "\u00bfC\u00f3mo te llamas? (informal)"
+        },
+        "539468370129753365": {
+            "question": "How are you? (informal)",
+            "ans": "\u00bfC\u00f3mo est\u00e1s? (informal)"
+        },
+        "116715398997769850": {
+            "question": "Good Night",
+            "ans": "Buenas noches"
+        },
+        "161063319013539440": {
+            "question": "I am called",
+            "ans": "Me llamo"
+        },
+        "326239108091954440": {
+            "question": "See you later",
+            "ans": "Hasta luego"
+        },
+        "165533037255296443": {
+            "question": "See you",
+            "ans": "Nos vemos"
+        },
+        "114035873471114770": {
+            "question": "Good Morning",
+            "ans": "Buenos dias"
+        },
+        "980323306185212992": {
+            "question": "Hello",
+            "ans": "Hola"
+        },
+        "208463160721744230": {
+            "question": "Good afternoon",
+            "ans": "Buenas tardes"
+        },
+        "142683064962495296": {
+            "question": "pleasure to meet you",
+            "ans": "Encantado"
+        },
+        "113131838535378129": {
+            "question": "See you tomorrow",
+            "ans": "Hasta ma\u00f1ana."
+        },
+        "277008100619395502": {
+            "question": "Good bye",
+            "ans": "Adi\u00f3s"
+        },
+        "189423248308406871": {
+            "question": "it is a pleasure",
+            "ans": "Mucho gusto"
+        },
+        "258477981027885624": {
+            "question": "Likewise. Same here.",
+            "ans": "Igualmente"
+        },
+        "277112132320509017": {
+            "question": "Mr.",
+            "ans": "se\u00f1or"
+        },
+        "415416707775236903": {
+            "question": "Mrs.",
+            "ans": "se\u00f1ora"
+        },
+        "593303106369458211": {
+            "question": "Ms.",
+            "ans": "se\u00f1orita"
+        },
+        "313659181764128528": {
+            "question": "Very good",
+            "ans": "Muy bien"
+        },
+        "644688545559107011": {
+            "question": "and you? (informal)",
+            "ans": "\u00bfY t\u00fa?"
+        },
+        "318552708332634157": {
+            "question": "Thank you",
+            "ans": "Gracias"
+        },
+        "168260483153569799": {
+            "question": "What's happening?",
+            "ans": "\u00bfQu\u00e9 pasa?"
+        },
+        "174540316873790110": {
+            "question": "Nothing",
+            "ans": "nada"
+        },
+        "207130835612300366": {
+            "question": "Where are you from?",
+            "ans": "\u00bfDe d\u00f3nde eres? (Where are you from?)"
+        },
+        "233430493938294510": {
+            "question": "I am from",
+            "ans": "Soy de"
+        },
+        "284746233270243470": {
+            "question": "is from",
+            "ans": "Es de"
+        },
+        "151218160578354371": {
+            "question": "How are you? (formal)",
+            "ans": "\u00bfC\u00f3mo est\u00e1 usted?"
+        },
+        "338888463347595494": {
+            "question": "Who is he/she/it?",
+            "ans": "\u00bfQui\u00e9n es?"
+        },
+        "207267941389245676": {
+            "question": "and you? (formal)",
+            "ans": "\u00bfY usted?"
+        },
+        "322111485652662655": {
+            "question": "rojo/a",
+            "ans": "red"
+        },
+        "297242434720301412": {
+            "question": "azul",
+            "ans": "blue"
+        },
+        "326344247767527288": {
+            "question": "anaranjado",
+            "ans": "orange"
+        },
+        "109487320500842195": {
+            "question": "verde",
+            "ans": "green"
+        },
+        "879721305957207787": {
+            "question": "negro",
+            "ans": "black"
+        },
+        "718223138385858771": {
+            "question": "rosado/rosa",
+            "ans": "pink"
+        },
+        "221891903950779125": {
+            "question": "zero",
+            "ans": "cero"
+        },
+        "820710356996553226": {
+            "question": "one",
+            "ans": "uno"
+        },
+        "288535903492151687": {
+            "question": "two",
+            "ans": "dos"
+        },
+        "238417214146790210": {
+            "question": "three",
+            "ans": "tres"
+        },
+        "332041255994287332": {
+            "question": "four",
+            "ans": "cuatro"
+        },
+        "994431314757610282": {
+            "question": "five",
+            "ans": "cinco"
+        },
+        "114286879411179068": {
+            "question": "six",
+            "ans": "seis"
+        },
+        "337433052283944803": {
+            "question": "seven",
+            "ans": "siete"
+        },
+        "323167548813126317": {
+            "question": "eight",
+            "ans": "ocho"
+        },
+        "606697241817355742": {
+            "question": "nine",
+            "ans": "nueve"
+        },
+        "193831993537515168": {
+            "question": "ten",
+            "ans": "diez"
+        },
+        "494596235304469768": {
+            "question": "eleven",
+            "ans": "once"
+        },
+        "127045250351955506": {
+            "question": "twelve",
+            "ans": "doce"
+        },
+        "353636629192007793": {
+            "question": "thirteen",
+            "ans": "trece"
+        },
+        "346673365018633979": {
+            "question": "fourteen",
+            "ans": "catorce"
+        },
+        "260356280375807495": {
+            "question": "fifteen",
+            "ans": "quince"
+        },
+        "658816192299498729": {
+            "question": "morado",
+            "ans": "purple"
+        },
+        "320500467131072752": {
+            "question": "cafe/marron",
+            "ans": "brown"
+        },
+        "275097587217505630": {
+            "question": "blanco/a",
+            "ans": "white"
+        },
+        "202203385138876095": {
+            "question": "amarillo/a",
+            "ans": "yellow"
+        },
+        "708848399629016323": {
+            "question": "paciente",
+            "ans": "patient"
+        },
+        "136585945811526030": {
+            "question": "impaciente",
+            "ans": "impatient"
+        },
+        "239525257137900848": {
+            "question": "ordenado/a",
+            "ans": "organized"
+        },
+        "582238005319325597": {
+            "question": "desordenado/a",
+            "ans": "disorganized"
+        },
+        "145167759657257867": {
+            "question": "amable",
+            "ans": "nice, kind"
+        },
+        "222073498976951980": {
+            "question": "malo/a",
+            "ans": "mean, bad"
+        },
+        "261641203646903731": {
+            "question": "loco/a",
+            "ans": "crazy"
+        },
+        "160961171508236797": {
+            "question": "feo/a",
+            "ans": "ugly"
+        },
+        "828729537098316674": {
+            "question": "bonito/a",
+            "ans": "pretty"
+        },
+        "100598412808202507": {
+            "question": "guapo/a, atractivo/a",
+            "ans": "handsome"
+        },
+        "146541029245874103": {
+            "question": "alto/a",
+            "ans": "tall"
+        },
+        "144402092959299143": {
+            "question": "bajo/a",
+            "ans": "short"
+        },
+        "277805871203093401": {
+            "question": "joven",
+            "ans": "young"
+        },
+        "120871792612196556": {
+            "question": "viejo/a",
+            "ans": "old"
+        },
+        "306931860632946575": {
+            "question": "atl\u00e9tico/a",
+            "ans": "athletic"
+        },
+        "169357418931728965": {
+            "question": "inteligente",
+            "ans": "intelligent"
+        },
+        "168759161848868126": {
+            "question": "tonto/a",
+            "ans": "dumb, silly"
+        },
+        "114980488550445981": {
+            "question": "c\u00f3mico/a - chistoso/a",
+            "ans": "funny"
+        },
+        "251645568222693791": {
+            "question": "serio/a",
+            "ans": "serious"
+        },
+        "283439435313670601": {
+            "question": "fuerte",
+            "ans": "strong"
+        },
+        "558789605015121915": {
+            "question": "d\u00e9bil",
+            "ans": "weak"
+        },
+        "339338272139612048": {
+            "question": "trabajador/a",
+            "ans": "hard-working"
+        },
+        "130651031376675510": {
+            "question": "perezoso/a",
+            "ans": "lazy"
+        },
+        "249496992042016770": {
+            "question": "Oloroso",
+            "ans": "smelly"
+        },
+        "242013528690481550": {
+            "question": "molesto",
+            "ans": "annoying"
+        },
+        "228590239401895613": {
+            "question": "flaco/a",
+            "ans": "skinny"
+        },
+        "328027251298202706": {
+            "question": "cansado/a",
+            "ans": "tired"
+        },
+        "128772143125946173": {
+            "question": "aburrido/a",
+            "ans": "bored"
+        },
+        "888219347105191924": {
+            "question": "concentrado",
+            "ans": "focused"
+        },
+        "156654636743444296": {
+            "question": "deprimido/a",
+            "ans": "depressed"
+        },
+        "164025356268109374": {
+            "question": "nervioso/a",
+            "ans": "nervious"
+        },
+        "644825564185269570": {
+            "question": "enojado/a",
+            "ans": "angry"
+        },
+        "165874767418024254": {
+            "question": "delicioso/a",
+            "ans": "delicious"
+        },
+        "334930327329987707": {
+            "question": "indiferente",
+            "ans": "indiferent"
+        },
+        "151932804034753215": {
+            "question": "ansioso/a",
+            "ans": "anxious"
+        },
+        "269475463109450742": {
+            "question": "feliz",
+            "ans": "happy"
+        },
+        "430908468486177057": {
+            "question": "frustrado/a",
+            "ans": "frustated"
+        },
+        "143833850628596639": {
+            "question": "dulce",
+            "ans": "sweet"
+        },
+        "262029241954344652": {
+            "question": "exitoso/a",
+            "ans": "successful"
+        },
+        "387055964228232992": {
+            "question": "en\u00e9rgico/a",
+            "ans": "energetic"
+        },
+        "179270683473119958": {
+            "question": "t\u00edmido/a",
+            "ans": "shy"
+        },
+        "375096131901305366": {
+            "question": "I like (followed by singular noun or infinitive verb)",
+            "ans": "Me gusta"
+        },
+        "160814914662757425": {
+            "question": "I don't like (followed by a singular noun or infinitive verb)",
+            "ans": "No me gusta"
+        },
+        "304144742907030105": {
+            "question": "to dance",
+            "ans": "bailar"
+        },
+        "279658156470425833": {
+            "question": "to draw",
+            "ans": "dibujar"
+        },
+        "202622405989921225": {
+            "question": "to go shopping",
+            "ans": "ir de compras"
+        },
+        "238029597320075150": {
+            "question": "to play sports",
+            "ans": "jugar deportes"
+        },
+        "788149350803636124": {
+            "question": "to read",
+            "ans": "leer"
+        },
+        "266885315335062873": {
+            "question": "to write",
+            "ans": "escribir"
+        },
+        "465088840038623603": {
+            "question": "to play video games",
+            "ans": "jugar videojuegos"
+        },
+        "173087143294989370": {
+            "question": "to watch television",
+            "ans": "mirar la televisi\u00f3n"
+        }
+    }
+}
