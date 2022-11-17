@@ -11,7 +11,7 @@ filePath = os.path.join("config.json")
 if not os.path.exists(filePath):
     open(filePath, 'x').close()
     file = open(filePath, 'w')
-    file.write(json.dumps({"username": None, "password": None}, indent=4, sort_keys=True, ensure_ascii=False))
+    file.write(json.dumps({"username": None, "password": None, "StopAfterDoneLearning": True}, indent=4, sort_keys=True, ensure_ascii=False))
     file.close()
 
 file = open("config.json")
@@ -20,6 +20,7 @@ file.close()
 
 USERNAME = config["username"]
 PASSWORD = config["password"]
+SADL = config["StopAfterDoneLearning"]
 
 #load db
 data = PysonDB("data.json")
@@ -45,12 +46,12 @@ def findAns(question):
 #the ai
 def ai(driver: webdriver.Chrome):
     while True:
-        time.sleep(0.1)
+        #time.sleep(0.1)
         
         if driver.find_elements(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']"):
             driver.find_element(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']").click()
 
-        elif driver.find_elements(By.XPATH, "//a[@aria-label='classic_review']"):
+        elif driver.find_elements(By.XPATH, "//a[@aria-label='classic_review']") and not SADL:
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
         elif driver.find_elements(By.XPATH, "//a[@aria-label='Learn new words']"):
@@ -62,8 +63,11 @@ def ai(driver: webdriver.Chrome):
             question = driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
             words = driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']")
             
-            preAns = findAns(question).replace(".", "").replace("?", "").replace("!", "").replace("¡", "").replace("¿", "")
-            ans = preAns.split(" ")
+            preAns = findAns(question)
+            if preAns == None:
+                ans = ""
+            else:
+                ans = preAns.replace(".", "").replace("?", "").replace("!", "").replace("¡", "").replace("¿", "").split(" ")
             
             for word in words:
                 if word.accessible_name in ans:
@@ -103,27 +107,26 @@ def ai(driver: webdriver.Chrome):
             for i in range(len(answers)):
                 if answers[i] == correctAnswer:
                     preAnswers[i].click()
+                    break
 
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
         
         elif driver.find_elements(By.XPATH, "//h2[@class='sc-18hl9gu-5 gXQFYZ']"):
-            possibleElements = ["class='sc-18hl9gu-6 hjLhBn'"]
             preAns = driver.find_elements(By.XPATH, "//h2[@class='sc-18hl9gu-5 gXQFYZ']")
-            
-            if not preAns:
-                preAns = driver.find_elements(By.XPATH, f"//h3[{possibleElements[0]}]")
             
             ans = preAns[0].accessible_name
 
             question = driver.find_element(By.XPATH, "//h3[@class='sc-18hl9gu-6 hjLhBn']").accessible_name
 
-            if data.get_by_query(lambda x: x['question'] == question):
-                prevAns = findAns(question)
-                if ans not in preAns:
-                    data.delete_by_query(lambda x: x['question'] == question)
-                    data.add({"question": question, "ans": prevAns.append(ans)})
-            else:
-                data.add({"question": question, "ans": [ans]})
+            questionExists = data.get_by_query(lambda x: x['question'] == question)
+            if questionExists:
+                ansExists = questionExists[list(questionExists)[0]]["ans"] == ans
+
+            if questionExists and not(ansExists):
+                data.delete_by_query(lambda x: x['question'] == question)
+                data.add({"question": question, "ans": ans})
+            elif not(questionExists):
+                data.add({"question": question, "ans": ans})
             
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
