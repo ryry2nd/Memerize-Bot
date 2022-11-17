@@ -1,0 +1,3 @@
+python #duh
+selenium
+pysondb-v2
