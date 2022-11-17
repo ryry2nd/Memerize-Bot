@@ -397,10 +397,6 @@
             "question": "to dance",
             "ans": "bailar"
         },
-        "279658156470425833": {
-            "question": "to draw",
-            "ans": "dibujar"
-        },
         "202622405989921225": {
             "question": "to go shopping",
             "ans": "ir de compras"
@@ -417,13 +413,641 @@
             "question": "to write",
             "ans": "escribir"
         },
-        "465088840038623603": {
-            "question": "to play video games",
-            "ans": "jugar videojuegos"
-        },
         "173087143294989370": {
             "question": "to watch television",
             "ans": "mirar la televisi\u00f3n"
+        },
+        "290189897904470243": {
+            "question": "to eat",
+            "ans": "comer"
+        },
+        "277374760128813732": {
+            "question": "to run",
+            "ans": "correr"
+        },
+        "258982829280901483": {
+            "question": "to travel",
+            "ans": "viajar"
+        },
+        "268829524820886500": {
+            "question": "January",
+            "ans": "enero"
+        },
+        "204158751594025288": {
+            "question": "February",
+            "ans": "febrero"
+        },
+        "240240617718047532": {
+            "question": "March",
+            "ans": "marzo"
+        },
+        "552035366604992170": {
+            "question": "April",
+            "ans": "abril"
+        },
+        "160754331684006717": {
+            "question": "May",
+            "ans": "mayo"
+        },
+        "273123785476740904": {
+            "question": "June",
+            "ans": "junio"
+        },
+        "121865189353660087": {
+            "question": "July",
+            "ans": "julio"
+        },
+        "296281220646520150": {
+            "question": "August",
+            "ans": "agosto"
+        },
+        "246581709781767459": {
+            "question": "September",
+            "ans": "septiembre"
+        },
+        "324495400322097589": {
+            "question": "October",
+            "ans": "octubre"
+        },
+        "179300818149693215": {
+            "question": "November",
+            "ans": "noviembre"
+        },
+        "219775851377185234": {
+            "question": "December",
+            "ans": "diciembre"
+        },
+        "274181920881447194": {
+            "question": "monday",
+            "ans": "lunes"
+        },
+        "930268994031231030": {
+            "question": "tuesday",
+            "ans": "martes"
+        },
+        "170279025384128892": {
+            "question": "wednesday",
+            "ans": "mi\u00e9rcoles"
+        },
+        "240108763035956550": {
+            "question": "thursday",
+            "ans": "jueves"
+        },
+        "254315823856596372": {
+            "question": "friday",
+            "ans": "viernes"
+        },
+        "953570339717630282": {
+            "question": "saturday",
+            "ans": "s\u00e1bado"
+        },
+        "192754354798912741": {
+            "question": "sunday",
+            "ans": "domingo"
+        },
+        "817144775442136252": {
+            "question": "great grandfather",
+            "ans": "el bisabuelo"
+        },
+        "186776731298012542": {
+            "question": "boyfriend",
+            "ans": "el novio"
+        },
+        "949865772023572311": {
+            "question": "girlfriend",
+            "ans": "la novia"
+        },
+        "323815483693651145": {
+            "question": "great grandmother",
+            "ans": "la bisabuela"
+        },
+        "189684001042655492": {
+            "question": "menu",
+            "ans": "el men\u00fa"
+        },
+        "398087040298400585": {
+            "question": "waiter",
+            "ans": "el mesero, el camarero"
+        },
+        "299533579886923078": {
+            "question": "steak",
+            "ans": "el biftec"
+        },
+        "298675848530266661": {
+            "question": "check",
+            "ans": "la cuenta"
+        },
+        "222499835828239550": {
+            "question": "tip",
+            "ans": "una propina"
+        },
+        "166639202847982852": {
+            "question": "beef",
+            "ans": "la carne de res"
+        },
+        "110097948960433375": {
+            "question": "lamb",
+            "ans": "el cordero"
+        },
+        "727601850546357988": {
+            "question": "oil",
+            "ans": "el aceite"
+        },
+        "223787366517194972": {
+            "question": "vinegar",
+            "ans": "el vinagre"
+        },
+        "248540893425286538": {
+            "question": "salt",
+            "ans": "la sal"
+        },
+        "138615825899005553": {
+            "question": "pepper",
+            "ans": "la primienta"
+        },
+        "221706719720771625": {
+            "question": "clear the table",
+            "ans": "levantar la mesa"
+        },
+        "295652155834252634": {
+            "question": "fork",
+            "ans": "el tenedor"
+        },
+        "103969999653685074": {
+            "question": "napkin",
+            "ans": "la servilleta"
+        },
+        "142890417927434333": {
+            "question": "cup",
+            "ans": "la taza"
+        },
+        "333456119102664412": {
+            "question": "spoon",
+            "ans": "la cuchara"
+        },
+        "324612563713127230": {
+            "question": "plate",
+            "ans": "el plato"
+        },
+        "289058082051455487": {
+            "question": "knife",
+            "ans": "el cuchillo"
+        },
+        "656936632723227478": {
+            "question": "with",
+            "ans": "con"
+        },
+        "197540413717249629": {
+            "question": "without",
+            "ans": "sin"
+        },
+        "159324261290357148": {
+            "question": "a lot",
+            "ans": "mucho"
+        },
+        "328251986807664476": {
+            "question": "very",
+            "ans": "muy"
+        },
+        "898965627358043115": {
+            "question": "is",
+            "ans": "es"
+        },
+        "182684329113574262": {
+            "question": "until",
+            "ans": "hasta"
+        },
+        "277755144947480914": {
+            "question": "each",
+            "ans": "cada"
+        },
+        "789857317361990596": {
+            "question": "everything, all",
+            "ans": "todo/s"
+        },
+        "229839915327406674": {
+            "question": "today",
+            "ans": "hoy"
+        },
+        "310873085542689062": {
+            "question": "of, from",
+            "ans": "de"
+        },
+        "775453255000347196": {
+            "question": "but",
+            "ans": "pero"
+        },
+        "275721437977395045": {
+            "question": "never",
+            "ans": "nunca"
+        },
+        "214789439372890848": {
+            "question": "in, on, at",
+            "ans": "en"
+        },
+        "126790501758083522": {
+            "question": "now",
+            "ans": "ahora"
+        },
+        "324779531972525496": {
+            "question": "a little",
+            "ans": "un poco"
+        },
+        "158568208658501155": {
+            "question": "more",
+            "ans": "m\u00e1s"
+        },
+        "900628014233039969": {
+            "question": "and",
+            "ans": "y"
+        },
+        "314457530637049737": {
+            "question": "are",
+            "ans": "son"
+        },
+        "194067978186477737": {
+            "question": "how many",
+            "ans": "\u00bfCu\u00e1ntos/as?"
+        },
+        "122595331743042186": {
+            "question": "to say",
+            "ans": "decir"
+        },
+        "329972902725038912": {
+            "question": "to make / to do",
+            "ans": "hacer"
+        },
+        "164423009931243203": {
+            "question": "to give",
+            "ans": "dar"
+        },
+        "225785468170184383": {
+            "question": "to have",
+            "ans": "tener"
+        },
+        "137311894232923555": {
+            "question": "to be (location/condition/emotion)",
+            "ans": "estar"
+        },
+        "406940556650780684": {
+            "question": "to be",
+            "ans": "ser"
+        },
+        "929740684529188569": {
+            "question": "to put",
+            "ans": "poner"
+        },
+        "190464315751323391": {
+            "question": "to go",
+            "ans": "ir"
+        },
+        "130514230892800848": {
+            "question": "to want",
+            "ans": "querer"
+        },
+        "102268595947120539": {
+            "question": "to be able",
+            "ans": "poder"
+        },
+        "335407976331638704": {
+            "question": "to see",
+            "ans": "ver"
+        },
+        "179662670767686993": {
+            "question": "to know (facts)",
+            "ans": "saber"
+        },
+        "220732982939876778": {
+            "question": "to know (people & places)",
+            "ans": "conocer"
+        },
+        "547738850983088910": {
+            "question": "there is / there are",
+            "ans": "hay"
+        },
+        "540213110329851662": {
+            "question": "It's good weather.",
+            "ans": "Hace buen tiempo."
+        },
+        "138971597158294086": {
+            "question": "It's sunny",
+            "ans": "Hace sol."
+        },
+        "998398000123038547": {
+            "question": "It's cool.",
+            "ans": "Hace fresco."
+        },
+        "336756892183293122": {
+            "question": "It's windy",
+            "ans": "Hace viento."
+        },
+        "163912624105593834": {
+            "question": "It's hot",
+            "ans": "Hace calor."
+        },
+        "245487038455917251": {
+            "question": "It's bad weather",
+            "ans": "Hace mal tiempo."
+        },
+        "299313329432573425": {
+            "question": "It's cloudy",
+            "ans": "Est\u00e1 nublado."
+        },
+        "446245176396236529": {
+            "question": "It rains.",
+            "ans": "Llueve."
+        },
+        "262052833546237464": {
+            "question": "It's cold.",
+            "ans": "Hace fr\u00edo."
+        },
+        "309261957116381068": {
+            "question": "It snows.",
+            "ans": "Nieva."
+        },
+        "259394685115141244": {
+            "question": "the seasons",
+            "ans": "las estaciones"
+        },
+        "893218088429106396": {
+            "question": "winter",
+            "ans": "el invierno"
+        },
+        "238551511220561191": {
+            "question": "summer",
+            "ans": "el verano"
+        },
+        "266488778292928145": {
+            "question": "fall",
+            "ans": "el oto\u00f1o"
+        },
+        "154338083549663787": {
+            "question": "spring",
+            "ans": "la primavera"
+        },
+        "262167196515589438": {
+            "question": "What is the weather like?",
+            "ans": "\u00bfQu\u00e9 tiempo hace?"
+        },
+        "459171833507671904": {
+            "question": "to play basketball",
+            "ans": "jugar al baloncesto"
+        },
+        "115488798254307682": {
+            "question": "to have a coffee",
+            "ans": "tomar un caf\u00e9"
+        },
+        "213511986283178588": {
+            "question": "to watch a movie",
+            "ans": "ver una pel\u00edcula"
+        },
+        "228542943594314682": {
+            "question": "to watch TV",
+            "ans": "ver televisi\u00f3n"
+        },
+        "332110689207245216": {
+            "question": "to play the guitar",
+            "ans": "tocar la guitarra"
+        },
+        "648522243004230231": {
+            "question": "to play music",
+            "ans": "tocar m\u00fasica"
+        },
+        "330754297299301341": {
+            "question": "talk",
+            "ans": "hablar"
+        },
+        "129759991646631380": {
+            "question": "to play videoames",
+            "ans": "jugar videojuegos"
+        },
+        "176527915908849213": {
+            "question": "to play/practice sports",
+            "ans": "hacer deporte"
+        },
+        "281296028480064012": {
+            "question": "to listen to music",
+            "ans": "escuchar m\u00fasica"
+        },
+        "192300745400032020": {
+            "question": "to play chess",
+            "ans": "jugar al ajedrez"
+        },
+        "332409639099410563": {
+            "question": "to surf the internet",
+            "ans": "navegar por internet"
+        },
+        "205894782619793515": {
+            "question": "to clean the house",
+            "ans": "limpiar la casa"
+        },
+        "339647655452766729": {
+            "question": "to sing",
+            "ans": "cantar"
+        },
+        "326189481244419539": {
+            "question": "to read magazines",
+            "ans": "leer revistas"
+        },
+        "182693694070857386": {
+            "question": "draw",
+            "ans": "dibujar"
+        },
+        "267404703927160425": {
+            "question": "to do homework",
+            "ans": "hacer los deberes/ hacer la tarea"
+        },
+        "272503905292325817": {
+            "question": "to walk in the park",
+            "ans": "pasear por el parque"
+        },
+        "129808672766340768": {
+            "question": "to swim in the pool",
+            "ans": "nadar en la piscina"
+        },
+        "207785921345398880": {
+            "question": "to sleep",
+            "ans": "dormir"
+        },
+        "938046073868517073": {
+            "question": "mexican@",
+            "ans": "M\u00e9xico"
+        },
+        "316924024586227281": {
+            "question": "guatemaltec@",
+            "ans": "Guatemala"
+        },
+        "293904588762010215": {
+            "question": "salvadore\u00f1@",
+            "ans": "San Salvador"
+        },
+        "627626973584286115": {
+            "question": "hondure\u00f1@",
+            "ans": "Honduras"
+        },
+        "159720151513455606": {
+            "question": "paname\u00f1@",
+            "ans": "Panama"
+        },
+        "658559272399401360": {
+            "question": "nicarag\u00fcense",
+            "ans": "Nicaragua"
+        },
+        "314450439247267415": {
+            "question": "costarricense",
+            "ans": "Costa Rica"
+        },
+        "262865065178392524": {
+            "question": "colombian@",
+            "ans": "Colombia"
+        },
+        "350775695344905230": {
+            "question": "venezolan@",
+            "ans": "Venezuela"
+        },
+        "453039935882357517": {
+            "question": "bolivian@",
+            "ans": "Bolivia"
+        },
+        "278923179825399918": {
+            "question": "uruguay@",
+            "ans": "Uruguay"
+        },
+        "604183156632004029": {
+            "question": "paraguay@",
+            "ans": "Paraguay"
+        },
+        "339992281097908672": {
+            "question": "chilen@",
+            "ans": "Chile"
+        },
+        "142332471197657255": {
+            "question": "Argentin@",
+            "ans": "Argentina"
+        },
+        "143003744784742665": {
+            "question": "espa\u00f1ol/a",
+            "ans": "Espa\u00f1a"
+        },
+        "421784196772668649": {
+            "question": "cuban@",
+            "ans": "Cuba"
+        },
+        "183347043344994724": {
+            "question": "rabbit",
+            "ans": "conejo"
+        },
+        "233686160448267034": {
+            "question": "cat",
+            "ans": "gato"
+        },
+        "496730494561838672": {
+            "question": "hamster",
+            "ans": "h\u00e1mster"
+        },
+        "182880067606814923": {
+            "question": "bear",
+            "ans": "oso"
+        },
+        "231504879295979741": {
+            "question": "fish",
+            "ans": "pez"
+        },
+        "203572345106308849": {
+            "question": "bird",
+            "ans": "pajaro"
+        },
+        "278592605231995972": {
+            "question": "turtle",
+            "ans": "tortuga"
+        },
+        "160441849415521013": {
+            "question": "rat",
+            "ans": "rat\u00f3n"
+        },
+        "239459592752695567": {
+            "question": "frog",
+            "ans": "rana"
+        },
+        "148104398561150536": {
+            "question": "dog",
+            "ans": "perro"
+        },
+        "208907767915152166": {
+            "question": "giraffe",
+            "ans": "jirafa"
+        },
+        "166503263924810654": {
+            "question": "cow",
+            "ans": "vaca"
+        },
+        "535181082162045219": {
+            "question": "spider",
+            "ans": "ara\u00f1a"
+        },
+        "253329469252889232": {
+            "question": "whale",
+            "ans": "ballena"
+        },
+        "303625894252438963": {
+            "question": "squirrel",
+            "ans": "ardilla"
+        },
+        "141398452038798563": {
+            "question": "goat",
+            "ans": "cabra"
+        },
+        "339273848901165310": {
+            "question": "zebra",
+            "ans": "cebra"
+        },
+        "226360621961838947": {
+            "question": "pig",
+            "ans": "cerdo"
+        },
+        "343420485761145875": {
+            "question": "crocodile",
+            "ans": "cocodrilo"
+        },
+        "358749630972405446": {
+            "question": "elephant",
+            "ans": "elefante"
+        },
+        "261927456805902710": {
+            "question": "hippopotamus",
+            "ans": "hipop\u00f3tamo"
+        },
+        "216824508958051278": {
+            "question": "butterfly",
+            "ans": "mariposa"
+        },
+        "105176249081813443": {
+            "question": "monkey",
+            "ans": "mono"
+        },
+        "168773160766196797": {
+            "question": "horse",
+            "ans": "caballo"
+        },
+        "732717178474596325": {
+            "question": "sheep",
+            "ans": "oveja"
+        },
+        "243888666074759361": {
+            "question": "duck",
+            "ans": "pato"
+        },
+        "247896197791079023": {
+            "question": "chicken",
+            "ans": "pollo"
+        },
+        "184211454541206347": {
+            "question": "fox",
+            "ans": "zorro"
+        },
+        "785048380998622296": {
+            "question": "snake",
+            "ans": "serpiente"
         }
     }
 }

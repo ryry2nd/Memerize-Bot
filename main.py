@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import *
 from selenium.webdriver.common.keys import Keys
 from pysondb import PysonDB
-import time, json, os
+import time, json, os, collections
 
 #get password
 filePath = os.path.join("config.json")
@@ -60,21 +60,29 @@ def ai(driver: webdriver.Chrome):
         if driver.find_elements(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']"):
             driver.find_element(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']").click()
 
+        elif driver.find_elements(By.XPATH, "//a[@aria-label='Classic review']"):
+            driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
+
         elif driver.find_elements(By.XPATH, "//a[@aria-label='Learn new words']"):
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
-        elif driver.find_elements(By.XPATH, "//button[data-testid='tapping-response-answer']"):
+        elif driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']"):
+            toBeSorted = {}
+
             question = driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
-            boxes = driver.find_elements(By.XPATH, "//button[data-testid='tapping-response-answer']")
+            words = driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']")
+            
+            preAns = findAns(question).replace(".", "").replace("?", "").replace("!", "").replace("¡", "").replace("¿", "")
+            ans = preAns.split(" ")
+            
+            for word in words:
+                if word.accessible_name in ans:
+                    toBeSorted[ans.index(word.accessible_name)] = word
+            
+            sort = collections.OrderedDict(sorted(toBeSorted.items()))
 
-            ans = findAns(question)
-
-            ans.split(' ')
-            ans.split('?')
-            ans.split('.')
-            ans.split('!')
-            ans.split('¿')
-            ans.split('¡')
+            for id, d in sort.items():
+                d.click()
 
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
@@ -82,12 +90,16 @@ def ai(driver: webdriver.Chrome):
             question = driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
             box = driver.find_element(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']")
 
-            box.send_keys(findAns(question))
+            ans = findAns(question)
+
+            if ans != None:
+                box.send_keys(ans)
 
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
-        elif driver.find_elements(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']"):
+        elif driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']"):
             question = driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
+
             preAnswers = driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']")
 
             answers = []
