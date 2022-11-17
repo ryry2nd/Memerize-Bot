@@ -1,10 +1,9 @@
 #imports
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import *
-from selenium.webdriver.common.keys import Keys
 from pysondb import PysonDB
-import time, json, os, collections
+from ai import Ai
+import time, json, os
 
 #get password
 filePath = os.path.join("config.json")
@@ -22,9 +21,6 @@ USERNAME = config["username"]
 PASSWORD = config["password"]
 SADL = config["StopAfterDoneLearning"]
 
-#load db
-data = PysonDB("data.json")
-
 #logs in
 def log_in(driver: webdriver.Chrome):
     time.sleep(0.5)
@@ -38,98 +34,6 @@ def log_in(driver: webdriver.Chrome):
     submit.click()
     time.sleep(5)
 
-#finds the answer
-def findAns(question):
-    for x, y in data.get_by_query(lambda x: x['question'] == question).items():
-        return y["ans"]
-
-#the ai
-def ai(driver: webdriver.Chrome):
-    while True:
-        #time.sleep(0.1)
-        
-        if driver.find_elements(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']"):
-            driver.find_element(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']").click()
-
-        elif driver.find_elements(By.XPATH, "//a[@aria-label='classic_review']") and not SADL:
-            driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
-
-        elif driver.find_elements(By.XPATH, "//a[@aria-label='Learn new words']"):
-            driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
-
-        elif driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']"):
-            toBeSorted = {}
-
-            question = driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
-            words = driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']")
-            
-            preAns = findAns(question)
-            if preAns == None:
-                ans = ""
-            else:
-                ans = preAns.replace(".", "").replace("?", "").replace("!", "").replace("¡", "").replace("¿", "").split(" ")
-            
-            for word in words:
-                if word.accessible_name in ans:
-                    toBeSorted[ans.index(word.accessible_name)] = word
-            
-            sort = collections.OrderedDict(sorted(toBeSorted.items()))
-
-            for id, d in sort.items():
-                d.click()
-
-            driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
-
-        elif driver.find_elements(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']"):
-            question = driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
-            box = driver.find_element(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']")
-
-            ans = findAns(question)
-
-            if ans != None:
-                box.send_keys(ans)
-
-            driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
-
-        elif driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']"):
-            question = driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
-
-            preAnswers = driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']")
-
-            answers = []
-            for i in preAnswers:
-                ans = i.accessible_name.split(' ')
-                ans.pop(0)
-                answers.append(' '.join(ans))
-
-            correctAnswer = findAns(question)
-
-            for i in range(len(answers)):
-                if answers[i] == correctAnswer:
-                    preAnswers[i].click()
-                    break
-
-            driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
-        
-        elif driver.find_elements(By.XPATH, "//h2[@class='sc-18hl9gu-5 gXQFYZ']"):
-            preAns = driver.find_elements(By.XPATH, "//h2[@class='sc-18hl9gu-5 gXQFYZ']")
-            
-            ans = preAns[0].accessible_name
-
-            question = driver.find_element(By.XPATH, "//h3[@class='sc-18hl9gu-6 hjLhBn']").accessible_name
-
-            questionExists = data.get_by_query(lambda x: x['question'] == question)
-            if questionExists:
-                ansExists = questionExists[list(questionExists)[0]]["ans"] == ans
-
-            if questionExists and not(ansExists):
-                data.delete_by_query(lambda x: x['question'] == question)
-                data.add({"question": question, "ans": ans})
-            elif not(questionExists):
-                data.add({"question": question, "ans": ans})
-            
-            driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
-
 #main method
 def main():
     driver = webdriver.Chrome('C:/Program Files/Google/Chrome/Application/chromedriver.exe')
@@ -137,7 +41,7 @@ def main():
     driver.get("https://app.memrise.com/groups/")
 
     log_in(driver)
-    ai(driver)
+    Ai(driver, sadl=SADL)
 
 if __name__ == '__main__':
     main()
