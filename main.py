@@ -37,20 +37,10 @@ def log_in(driver: webdriver.Chrome):
     submit.click()
     time.sleep(5)
 
-#tests if question is not in the db
-def testIfNotExists(question):
-    for id, d in data.get_all().items():
-        if d["question"] == question:
-            return False
-    return True
-
 #finds the answer
 def findAns(question):
-    for id, d in data.get_all().items():
-        if d["question"] == question:
-            return d["ans"]
-        elif d["ans"] == question:
-            return d["question"]
+    for x, y in data.get_by_query(lambda x: x['question'] == question).items():
+        return y["ans"]
 
 #the ai
 def ai(driver: webdriver.Chrome):
@@ -60,7 +50,7 @@ def ai(driver: webdriver.Chrome):
         if driver.find_elements(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']"):
             driver.find_element(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']").click()
 
-        elif driver.find_elements(By.XPATH, "//a[@aria-label='Classic review']"):
+        elif driver.find_elements(By.XPATH, "//a[@aria-label='classic_review']"):
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
         elif driver.find_elements(By.XPATH, "//a[@aria-label='Learn new words']"):
@@ -127,8 +117,13 @@ def ai(driver: webdriver.Chrome):
 
             question = driver.find_element(By.XPATH, "//h3[@class='sc-18hl9gu-6 hjLhBn']").accessible_name
 
-            if testIfNotExists(question):
-                data.add({"question": question, "ans": ans})
+            if data.get_by_query(lambda x: x['question'] == question):
+                prevAns = findAns(question)
+                if ans not in preAns:
+                    data.delete_by_query(lambda x: x['question'] == question)
+                    data.add({"question": question, "ans": prevAns.append(ans)})
+            else:
+                data.add({"question": question, "ans": [ans]})
             
             driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
