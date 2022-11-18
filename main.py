@@ -9,7 +9,7 @@ filePath = "config.json"
 if not os.path.exists(filePath):
     open(filePath, 'x').close()
     file = open(filePath, 'w')
-    file.write(json.dumps({"username": None, "password": None, "StopAfterDoneLearning": True}, indent=4, sort_keys=True, ensure_ascii=False))
+    file.write(json.dumps({"username": None, "password": None, "StopAfterDoneLearning": True}))
     file.close()
 
 file = open("config.json")
