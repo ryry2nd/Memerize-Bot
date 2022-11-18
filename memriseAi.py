@@ -2,6 +2,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import *
 from pysondb import PysonDB
 import collections
 
@@ -32,11 +33,18 @@ class Ai:
 
     #gets the question
     def getQuestion(self):
-        return self.driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
-    
+        try:
+            return self.driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
+        except NoSuchElementException:
+            return
+
     #completes the type in a box questions
     def typeInBox(self):
         question = self.getQuestion()
+
+        if not question:
+            return
+
         box = self.driver.find_element(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']")
 
         ans = self.findAns(question)
@@ -51,6 +59,10 @@ class Ai:
         toBeSorted = {}
 
         question = self.getQuestion()
+
+        if not question:
+            return
+
         words = self.driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']")
         
         preAns = self.findAns(question)
@@ -73,6 +85,9 @@ class Ai:
     #completes the multiple choice questions
     def multipleChoice(self):
         question = self.getQuestion()
+
+        if not question:
+            return
 
         preAnswers = self.driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']")
 
