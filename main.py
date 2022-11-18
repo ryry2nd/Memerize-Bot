@@ -33,7 +33,7 @@ def log_in(driver: webdriver.Chrome):
 
 #main method
 def main():
-    driver = webdriver.Chrome('C:/Program Files/Google/Chrome/Application/chromedriver.exe')
+    driver = webdriver.Chrome("chromedriver.exe")#'C:/Program Files/Google/Chrome/Application/chromedriver.exe')
 
     driver.get("https://app.memrise.com/groups/")
 
