@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from memriseAi import Ai
 import json, os
 
-#get password
+#get configs
 filePath = "config.json"
 if not os.path.exists(filePath):
     open(filePath, 'x').close()

@@ -1,10 +1,13 @@
+#imports
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from pysondb import PysonDB
 import collections
 
+#ai class
 class Ai:
+    #init method
     def __init__(self, driver: webdriver.Chrome, sadl=True, fName="data.json"):
         self.data = PysonDB(fName)
         self.SADL = sadl
@@ -19,15 +22,19 @@ class Ai:
             elif d["ans"] == question:
                 return d["question"]
     
+    #skips the reminder the website asks you to turn on
     def skipReminder(self):
         self.driver.find_element(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']").click()
 
+    #presses enter
     def pressEnter(self):
         self.driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
 
+    #gets the question
     def getQuestion(self):
         return self.driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
     
+    #completes the type in a box questions
     def typeInBox(self):
         question = self.getQuestion()
         box = self.driver.find_element(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']")
@@ -39,6 +46,7 @@ class Ai:
 
         self.pressEnter()
     
+    #completes the box questions
     def selectBoxes(self):
         toBeSorted = {}
 
@@ -62,6 +70,7 @@ class Ai:
 
         self.pressEnter()
     
+    #completes the multiple choice questions
     def multipleChoice(self):
         question = self.getQuestion()
 
@@ -82,6 +91,7 @@ class Ai:
 
         self.pressEnter()
     
+    #learns when it tells you the answer to the question
     def learn(self):
         preAns = self.driver.find_elements(By.XPATH, "//h2[@class='sc-18hl9gu-5 gXQFYZ']")
         ans = preAns[0].accessible_name
@@ -100,6 +110,7 @@ class Ai:
         
         self.pressEnter()
 
+    #starts the code
     def start(self):
         while True:
             if self.driver.find_elements(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']"):
