@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import *
 from selenium.webdriver.common.keys import Keys
 from pysondb import PysonDB
 import collections
@@ -14,19 +13,23 @@ class Ai:
 
     #finds the answer
     def findAns(self, question):
-        for x, y in self.data.get_by_query(lambda x: x['question'] == question).items():
-            return y["ans"]
-        for x, y in self.data.get_by_query(lambda x: x['ans'] == question).items():
-            return y["question"]
+        for id, d in self.data.get_all().items():
+            if d["question"] == question:
+                return d["ans"]
+            elif d["ans"] == question:
+                return d["question"]
     
     def skipReminder(self):
         self.driver.find_element(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']").click()
 
     def pressEnter(self):
         self.driver.find_element(By.XPATH, "//html").send_keys(Keys.ENTER)
+
+    def getQuestion(self):
+        return self.driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
     
     def typeInBox(self):
-        question = self.driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
+        question = self.getQuestion()
         box = self.driver.find_element(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']")
 
         ans = self.findAns(question)
@@ -39,7 +42,7 @@ class Ai:
     def selectBoxes(self):
         toBeSorted = {}
 
-        question = self.driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
+        question = self.getQuestion()
         words = self.driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']")
         
         preAns = self.findAns(question)
@@ -60,7 +63,7 @@ class Ai:
         self.pressEnter()
     
     def multipleChoice(self):
-        question = self.driver.find_element(By.XPATH, "//h2[@class='sc-af59h9-2 hDpNkj']").accessible_name
+        question = self.getQuestion()
 
         preAnswers = self.driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']")
 
@@ -99,7 +102,16 @@ class Ai:
 
     def start(self):
         while True:
-            if self.driver.find_elements(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']"):
+            if self.driver.find_elements(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']"):
+                self.typeInBox()
+
+            elif self.driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']"):
+                self.multipleChoice()
+
+            elif self.driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']"):
+                self.selectBoxes()
+            
+            elif self.driver.find_elements(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']"):
                 self.skipReminder()
 
             elif self.driver.find_elements(By.XPATH, "//a[@aria-label='classic_review']") and not self.SADL:
@@ -107,15 +119,8 @@ class Ai:
 
             elif self.driver.find_elements(By.XPATH, "//a[@aria-label='Learn new words']"):
                 self.pressEnter()
-
-            elif self.driver.find_elements(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']"):
-                self.typeInBox()
-
-            elif self.driver.find_elements(By.XPATH, "//button[@class='sc-1umog8t-0 kFaJKr']"):
-                self.selectBoxes()
-
-            elif self.driver.find_elements(By.XPATH, "//button[@class='sc-bcXHqe iDigtw']"):
-                self.multipleChoice()
             
             elif self.driver.find_elements(By.XPATH, "//h2[@class='sc-18hl9gu-5 gXQFYZ']"):
                 self.learn()
+
+__all__ = ["Ai"]

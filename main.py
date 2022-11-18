@@ -1,12 +1,11 @@
 #imports
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from pysondb import PysonDB
-from ai import Ai
-import time, json, os
+from memriseAi import Ai
+import json, os
 
 #get password
-filePath = os.path.join("config.json")
+filePath = "config.json"
 if not os.path.exists(filePath):
     open(filePath, 'x').close()
     file = open(filePath, 'w')
@@ -23,7 +22,6 @@ SADL = config["StopAfterDoneLearning"]
 
 #logs in
 def log_in(driver: webdriver.Chrome):
-    time.sleep(0.5)
     userName = driver.find_element(value="username")
     password = driver.find_element(value="password")
     submit = driver.find_element(By.XPATH, "//button[@data-testid='signinFormSubmit']")
@@ -32,7 +30,6 @@ def log_in(driver: webdriver.Chrome):
     password.send_keys(PASSWORD)
 
     submit.click()
-    time.sleep(5)
 
 #main method
 def main():
