@@ -38,7 +38,12 @@ def main():
     driver.get("https://app.memrise.com/groups/")
 
     log_in(driver)
-    Ai(driver, sadl=SADL)
+
+    while True:
+        try:
+            Ai(driver, sadl=SADL)
+        except Exception as e:
+            print(e)
 
 if __name__ == '__main__':
     main()
