@@ -13,7 +13,14 @@ class Ai:
         self.data = PysonDB(fName)
         self.SADL = sadl
         self.driver = driver
-        self.start()
+
+        while True:
+            try:
+                self.start()
+            except NoSuchWindowException:
+                return
+            except Exception as e:
+                print(e)
 
     #finds the answer
     def findAns(self, question):

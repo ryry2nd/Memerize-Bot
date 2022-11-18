@@ -33,17 +33,12 @@ def log_in(driver: webdriver.Chrome):
 
 #main method
 def main():
-    driver = webdriver.Chrome("chromedriver.exe")#'C:/Program Files/Google/Chrome/Application/chromedriver.exe')
+    driver = webdriver.Chrome("chromedriver.exe")
 
     driver.get("https://app.memrise.com/groups/")
 
     log_in(driver)
-
-    while True:
-        try:
-            Ai(driver, sadl=SADL)
-        except Exception as e:
-            print(e)
+    Ai(driver, sadl=SADL)
 
 if __name__ == '__main__':
     main()
