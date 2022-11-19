@@ -40,5 +40,7 @@ def main():
     log_in(driver)
     Ai(driver, sadl=SADL)
 
+    driver.quit()
+
 if __name__ == '__main__':
     main()
