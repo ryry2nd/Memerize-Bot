@@ -20,7 +20,7 @@ class Ai:
             except NoSuchWindowException:
                 return
             except TimeoutException:
-                return
+                driver.refresh()
             except Exception as e:
                 print(e)
 
