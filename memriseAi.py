@@ -156,4 +156,7 @@ class Ai:
             elif self.driver.find_elements(By.XPATH, "//h2[@class='sc-18hl9gu-5 gXQFYZ']"):
                 self.learn()
 
+            elif self.driver.find_elements(By.XPATH, "//div[@class='sc-s6iyrn-2 hldCEU']"):
+                self.driver.refresh()
+
 __all__ = ["Ai"]
