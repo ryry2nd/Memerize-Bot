@@ -4,10 +4,6 @@ from selenium.webdriver.common.by import By
 from memriseAi import Ai
 import json, os
 
-#sets it as incognito
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--incognito")
-
 #get configs
 filePath = "config.json"
 if not os.path.exists(filePath):
@@ -37,7 +33,7 @@ def log_in(driver: webdriver.Chrome):
 
 #main method
 def main():
-    driver = webdriver.Chrome("chromedriver.exe", chrome_options=chrome_options)
+    driver = webdriver.Chrome("chromedriver.exe")
 
     driver.get("https://app.memrise.com/groups/")
 

@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import *
 from pysondb import PysonDB
-import collections
+import collections, time
 
 #ai class
 class Ai:
@@ -13,6 +13,7 @@ class Ai:
         self.data = PysonDB(fName)
         self.SADL = sadl
         self.driver = driver
+        self.startTime = time.time()
 
         while True:
             try:
@@ -135,6 +136,10 @@ class Ai:
     #starts the code
     def start(self):
         while True:
+            if (self.startTime - time.time()) >= (30 * 60):
+                self.driver.refresh()
+                self.startTime = time.time()
+
             if self.driver.find_elements(By.XPATH, "//input[@class='sc-1v1crxt-4 kHCLct']"):
                 self.typeInBox()
 
@@ -147,7 +152,7 @@ class Ai:
             elif self.driver.find_elements(By.XPATH, "//button[@class='sc-1dxc4vq-2 fjYiwU']"):
                 self.skipReminder()
 
-            elif self.driver.find_elements(By.XPATH, "//a[@aria-label='classic_review']") and not self.SADL:
+            elif not(self.SADL) and self.driver.find_elements(By.XPATH, "//a[@aria-label='classic_review']"):
                 self.pressEnter()
 
             elif self.driver.find_elements(By.XPATH, "//a[@aria-label='Learn new words']"):
