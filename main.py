@@ -4,12 +4,14 @@ from selenium.webdriver.common.by import By
 from memriseAi import Ai
 import json, os
 
+options = webdriver.ChromeOptions()
+
 #get configs
 filePath = "config.json"
 if not os.path.exists(filePath):
     open(filePath, 'x').close()
     file = open(filePath, 'w')
-    file.write(json.dumps({"username": None, "password": None, "StopAfterDoneLearning": True}))
+    file.write(json.dumps({"username": None, "password": None, "StopAfterDoneLearning": True, "hidden": True, "url": None}))
     file.close()
 
 file = open("config.json")
@@ -19,6 +21,11 @@ file.close()
 USERNAME = config["username"]
 PASSWORD = config["password"]
 SADL = config["StopAfterDoneLearning"]
+HIDDEN = config["hidden"]
+URL = config["url"]
+
+if HIDDEN:
+    options.add_argument('headless')
 
 #logs in
 def log_in(driver: webdriver.Chrome):
@@ -33,9 +40,12 @@ def log_in(driver: webdriver.Chrome):
 
 #main method
 def main():
-    driver = webdriver.Chrome("chromedriver.exe")
+    driver = webdriver.Chrome(executable_path="chromedriver.exe", options=options)
 
-    driver.get("https://app.memrise.com/groups/")
+    if not URL:
+        driver.get("https://app.memrise.com/groups/")
+    else:
+        driver.get(URL)
 
     log_in(driver)
     Ai(driver, sadl=SADL)
