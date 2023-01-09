@@ -132,3 +132,6 @@ dmypy.json
 .vscode
 config.json
 data.json
+main.py
+memriseAi.py
+chromedriver.exe
