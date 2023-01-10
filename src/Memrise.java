@@ -9,12 +9,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import exceptions.UnPassNotFoundException;
+
 public class Memrise {
     private ChromeDriver driver;
     private String username, password, link;
     private Ai ai;
 
-    public Memrise() throws FileNotFoundException, IOException {
+    public Memrise() throws FileNotFoundException, IOException, UnPassNotFoundException {
         Properties props = new Properties();
         props.load(new FileInputStream("config.properties"));
 
@@ -29,7 +31,11 @@ public class Memrise {
         ai = new Ai(driver, SADL);
     }
 
-    private void log_in() {
+    private void log_in() throws UnPassNotFoundException{
+        if (username.equals("") || password.equals("")) {
+            throw new UnPassNotFoundException("username or password not found");
+        }
+
         driver.get(link);
         WebElement un = driver.findElement(By.name("username"));
         WebElement passwd = driver.findElement(By.name("password"));

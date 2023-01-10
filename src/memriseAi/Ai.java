@@ -32,8 +32,8 @@ public class Ai {
         for (HashMap.Entry<String, String> entry : words.entrySet()) {
             listQuestion = entry.getKey();
             listAns = entry.getValue();
-            if (listQuestion == question) {return listAns;}
-            if (listAns == question) {return listQuestion;}
+            if (listQuestion.equals(question)) {return listAns;}
+            if (listAns.equals(question)) {return listQuestion;}
         }
         return "";
     }
@@ -122,24 +122,28 @@ public class Ai {
 
         if (QUESTION.equals("")) {return;}
 
-        List<WebElement> preAnswers = driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']"));;
-        List<String> answers = new ArrayList<String>();
         final String CORRECTANSWER = findAns(QUESTION);
-        String ans = "";
-
         
-        for (WebElement i : preAnswers) {
-            for (int ii = 0; ii < i.getAccessibleName().length(); ii++) {
-                if (ii != 1) {ans += ' ';}
-                if (ii != 0) {ans += i.getAccessibleName().charAt(ii);}
-            }
-            answers.add(ans);
-        }
+        if (!CORRECTANSWER.equals("")) {
+            List<WebElement> answers = driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']"));;
+            String answersName;
+            String preAnswersName;
+            Boolean isFirstSpace;
 
-        for (int i = 0; i < answers.size(); i++) {
-            if (answers.get(i) == CORRECTANSWER) {
-                preAnswers.get(i).click();
-                break;
+            for (int i = 0; i < answers.size(); i++) {
+                preAnswersName = answers.get(i).getAccessibleName();
+                answersName = "";
+                isFirstSpace = true;
+                
+                for (char ch : preAnswersName.toCharArray()) {
+                    if (!isFirstSpace) {answersName += ch;}
+                    if (ch == ' ') {isFirstSpace = false;}
+                }
+
+                if (answersName.equals(CORRECTANSWER)) {
+                    answers.get(i).click();
+                    break;
+                }
             }
         }
 
@@ -163,21 +167,29 @@ public class Ai {
                 startTime = System.currentTimeMillis();
             }
 
-            if (!driver.findElements(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).isEmpty()) {typeInBox();}
+            if (!driver.findElements(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).isEmpty()) {
+                typeInBox();}
 
-            else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {multipleChoice();}
+            else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
+                multipleChoice();}
 
-            else if (!driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']")).isEmpty()) {selectBoxes();}
+            else if (!driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']")).isEmpty()) {
+                selectBoxes();}
             
-            else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {skipReminder();}
+            else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {
+                skipReminder();}
 
-            //else if (!SADL && driver.findElements(By.xpath("//a[@aria-label='classic_review']")).isEmpty()) {pressEnter();}
+            //else if (!SADL && driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
+            //    pressEnter();}
 
-            else if (!driver.findElements(By.xpath("//a[@aria-label='Learn new words']")).isEmpty()) {pressEnter();}
+            else if (!driver.findElements(By.xpath("//a[@aria-label='Learn new words']")).isEmpty()) {
+                pressEnter();}
             
-            else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {learn();}
+            else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
+                learn();}
 
-            else if (!driver.findElements(By.xpath("//div[@class='sc-s6iyrn-2 hldCEU']")).isEmpty()) {driver.navigate().refresh();}
+            //else if (!driver.findElements(By.xpath("//div[@class='sc-s6iyrn-2 hldCEU']")).isEmpty()) {
+            //    driver.navigate().refresh();}
         }
     }
 }
