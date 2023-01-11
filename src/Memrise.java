@@ -67,7 +67,7 @@ public class Memrise {
 
     public void start() {
         ai.start();
-        driver.quit();
+        try {driver.quit();} catch (Exception e) {System.out.println(e);}
     }
 
     public static void main(String[] args) throws Exception {
