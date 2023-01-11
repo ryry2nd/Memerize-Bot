@@ -1,4 +1,5 @@
 import memriseAi.Ai;
+import exceptions.UnPassNotFoundException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,8 +9,7 @@ import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import exceptions.UnPassNotFoundException;
+import org.openqa.selenium.ElementNotInteractableException;
 
 public class Memrise {
     private ChromeDriver driver;
@@ -37,9 +37,18 @@ public class Memrise {
         }
 
         driver.get(link);
-        WebElement un = driver.findElement(By.name("username"));
-        WebElement passwd = driver.findElement(By.name("password"));
-        WebElement submit = driver.findElement(By.xpath("//button[@data-testid='signinFormSubmit']"));
+
+        WebElement un, passwd, submit;
+
+        while (true) {
+            try {
+                un = driver.findElement(By.name("username"));
+                passwd = driver.findElement(By.name("password"));
+                submit = driver.findElement(By.xpath("//button[@data-testid='signinFormSubmit']"));
+                break;  
+            }
+            catch (ElementNotInteractableException e) {System.out.println(e);}
+        }
 
         un.sendKeys(username);
         passwd.sendKeys(password);
@@ -49,9 +58,8 @@ public class Memrise {
 
     public void start() {
         ai.start();
+        driver.quit();
     }
-
-    
 
     public static void main(String[] args) throws Exception {
         Memrise bot = new Memrise();

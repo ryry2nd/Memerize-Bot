@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NoSuchWindowException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -160,36 +161,33 @@ public class Ai {
     }
 
     public void start() {
-        long startTime = System.currentTimeMillis();
-        while (true){
-            if ((startTime - System.currentTimeMillis()) >= (30 * 60)) {
-                driver.navigate().refresh();
-                startTime = System.currentTimeMillis();
+        while (true) {
+            try {
+                while (true){
+                    if (!driver.findElements(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).isEmpty()) {
+                        typeInBox();}
+
+                    else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
+                        multipleChoice();}
+
+                    else if (!driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']")).isEmpty()) {
+                        selectBoxes();}
+                    
+                    else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {
+                        skipReminder();}
+
+                    else if (!SADL && !driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
+                        pressEnter();}
+
+                    else if (!driver.findElements(By.xpath("//a[@aria-label='Learn new words']")).isEmpty()) {
+                        pressEnter();}
+                    
+                    else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
+                        learn();}
+                }
             }
-
-            if (!driver.findElements(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).isEmpty()) {
-                typeInBox();}
-
-            else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
-                multipleChoice();}
-
-            else if (!driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']")).isEmpty()) {
-                selectBoxes();}
-            
-            else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {
-                skipReminder();}
-
-            //else if (!SADL && driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
-            //    pressEnter();}
-
-            else if (!driver.findElements(By.xpath("//a[@aria-label='Learn new words']")).isEmpty()) {
-                pressEnter();}
-            
-            else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
-                learn();}
-
-            //else if (!driver.findElements(By.xpath("//div[@class='sc-s6iyrn-2 hldCEU']")).isEmpty()) {
-            //    driver.navigate().refresh();}
+            catch (NoSuchWindowException e) {break;}
+            catch (Exception e) {driver.navigate().refresh(); System.out.println(e);}
         }
     }
 }
