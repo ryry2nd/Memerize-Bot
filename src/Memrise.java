@@ -4,12 +4,12 @@ import exceptions.UnPassNotFoundException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ElementNotInteractableException;
 
 public class Memrise {
     private ChromeDriver driver;
@@ -45,9 +45,9 @@ public class Memrise {
                 un = driver.findElement(By.name("username"));
                 passwd = driver.findElement(By.name("password"));
                 submit = driver.findElement(By.xpath("//button[@data-testid='signinFormSubmit']"));
-                break;  
+                break;
             }
-            catch (ElementNotInteractableException e) {System.out.println(e);}
+            catch (NoSuchElementException e) {System.out.println(e);}
         }
 
         un.sendKeys(username);

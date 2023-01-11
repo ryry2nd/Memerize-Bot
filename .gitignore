@@ -130,9 +130,5 @@ dmypy.json
 
 #my stuff
 .vscode
-config.json
-data.json
-main.py
-memriseAi.py
-chromedriver.exe
 config.properties
+bin
