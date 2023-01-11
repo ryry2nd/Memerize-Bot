@@ -10,6 +10,7 @@ import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Memrise {
     private ChromeDriver driver;
@@ -24,7 +25,13 @@ public class Memrise {
         username = props.getProperty("username");
         password = props.getProperty("password");
         link = props.getProperty("link"); 
-        driver = new ChromeDriver();
+        Boolean isHidden = props.getProperty("hidden").equals("true");
+
+        ChromeOptions options = new ChromeOptions();
+
+        if (isHidden) {options.addArguments("headless");}
+
+        driver = new ChromeDriver(options);
 
         log_in();
 
