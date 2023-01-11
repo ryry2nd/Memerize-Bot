@@ -32,13 +32,12 @@ public class Memrise {
     }
 
     private void log_in() throws UnPassNotFoundException{
+        WebElement un, passwd, submit;
         if (username.equals("") || password.equals("")) {
             throw new UnPassNotFoundException("username or password not found");
         }
 
         driver.get(link);
-
-        WebElement un, passwd, submit;
 
         while (true) {
             try {

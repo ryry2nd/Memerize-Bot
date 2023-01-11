@@ -27,25 +27,8 @@ public class Ai {
         this.SADL = SADL;
     }
 
-    private String findAns(String question) {
-        String listQuestion, listAns;
-        for (HashMap.Entry<String, String> entry : words.entrySet()) {
-            listQuestion = entry.getKey();
-            listAns = entry.getValue();
-            if (listQuestion.equals(question)) {return listAns;}
-            if (listAns.equals(question)) {return listQuestion;}
-        }
-        return "";
-    }
-
     private void skipReminder(){
         driver.findElement(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).click();
-    }
-
-    private TreeMap<Integer, WebElement> sortbykey(HashMap<Integer, WebElement> map) {
-        TreeMap<Integer, WebElement> sorted = new TreeMap<>();
-        sorted.putAll(map);
-        return sorted;
     }
 
     private void pressEnter() {
@@ -67,18 +50,13 @@ public class Ai {
         if (QUESTION.equals("")) {return;}
 
         final WebElement BOX = driver.findElement(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']"));
-        final String ANS = findAns(QUESTION);
+        final String ANS = BasicFunctions.findAns(words, QUESTION);
 
         if (!ANS.equals("")) {
             BOX.sendKeys(ANS);
         }
 
         pressEnter();
-    }
-
-    private Boolean isIn(String[] a, String str) {
-        for (String s : a) {if (s.equals(str)) {return true;}}
-        return false;
     }
     
     private void selectBoxes() {
@@ -94,21 +72,17 @@ public class Ai {
 
         answerBoxes = driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']"));
 
-        for (char letter : findAns(QUESTION).toCharArray()) {
-            if (letter == '.' || letter == '.' || letter == '.'|| letter == '.'|| letter == '.') {}
-            else {preBoxAns += letter;}
-        }
         boxAns = preBoxAns.split(" ");
 
         int i = 0;
         for (WebElement answerBox : answerBoxes) {
-            if (isIn(boxAns, answerBox.getAccessibleName())) {
+            if (BasicFunctions.isIn(boxAns, answerBox.getAccessibleName())) {
                 toBeSorted.put(i, answerBox);
             }
             i++;
         }
         
-        sortedMap = sortbykey(toBeSorted);
+        sortedMap = BasicFunctions.sortbykey(toBeSorted);
 
         for (Entry<Integer, WebElement> entry : sortedMap.entrySet()) {
             entry.getValue().click();
@@ -122,7 +96,7 @@ public class Ai {
 
         if (QUESTION.equals("")) {return;}
 
-        final String CORRECTANSWER = findAns(QUESTION);
+        final String CORRECTANSWER = BasicFunctions.findAns(words, QUESTION);
         
         if (!CORRECTANSWER.equals("")) {
             List<WebElement> answers = driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']"));;
