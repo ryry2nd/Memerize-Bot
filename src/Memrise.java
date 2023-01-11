@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -48,12 +49,14 @@ public class Memrise {
 
         while (true) {
             try {
+                
+
                 un = driver.findElement(By.name("username"));
                 passwd = driver.findElement(By.name("password"));
                 submit = driver.findElement(By.xpath("//button[@data-testid='signinFormSubmit']"));
                 break;
             }
-            catch (NoSuchElementException e) {System.out.println(e);}
+            catch (NoSuchElementException|NoSuchWindowException e) {System.out.println(e);}
         }
 
         un.sendKeys(username);
@@ -64,7 +67,7 @@ public class Memrise {
 
     public void start() {
         ai.start();
-        driver.quit();
+        try {driver.quit();} catch (Exception e) {System.out.println(e);}
     }
 
     public static void main(String[] args) throws Exception {
