@@ -130,5 +130,5 @@ dmypy.json
 
 #my stuff
 .vscode
-config.json
-data.json
+
+bin
