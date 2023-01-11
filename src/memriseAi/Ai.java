@@ -52,10 +52,7 @@ public class Ai {
         final WebElement BOX = driver.findElement(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']"));
         final String ANS = BasicFunctions.findAns(words, QUESTION);
 
-        if (!ANS.equals("")) {
-            BOX.sendKeys(ANS);
-        }
-
+        BOX.sendKeys(ANS);
         pressEnter();
     }
     
