@@ -45,7 +45,6 @@ public class Memrise {
             throw new UnPassNotFoundException("username or password not found");
         }
 
-
         while (true) {
             try {
                 driver.get(link);

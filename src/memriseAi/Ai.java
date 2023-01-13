@@ -86,8 +86,7 @@ public class Ai {
         
         if (!CORRECTANSWER.equals("")) {
             List<WebElement> answers = driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']"));;
-            String answersName;
-            String preAnswersName;
+            String answersName, preAnswersName;
             Boolean isFirstSpace;
 
             for (int i = 0; i < answers.size(); i++) {
