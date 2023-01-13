@@ -45,18 +45,22 @@ public class Memrise {
             throw new UnPassNotFoundException("username or password not found");
         }
 
-        driver.get(link);
 
         while (true) {
             try {
-                
+                driver.get(link);
+                break;
+            } catch (NoSuchElementException e) {}
+        }
 
+        while (true) {
+            try {
                 un = driver.findElement(By.name("username"));
                 passwd = driver.findElement(By.name("password"));
                 submit = driver.findElement(By.xpath("//button[@data-testid='signinFormSubmit']"));
                 break;
             }
-            catch (NoSuchElementException|NoSuchWindowException e) {System.out.println(e);}
+            catch (NoSuchElementException|NoSuchWindowException e) {}
         }
 
         un.sendKeys(username);
