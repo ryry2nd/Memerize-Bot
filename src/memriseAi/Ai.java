@@ -4,7 +4,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchWindowException;
 
 import java.util.HashMap;
@@ -27,6 +26,8 @@ public class Ai {
         this.SADL = SADL;
     }
 
+    public static HashMap<String, String> getWords() {return words;}
+
     private void skipReminder(){
         driver.findElement(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).click();
     }
@@ -36,23 +37,11 @@ public class Ai {
     }
 
     private String getQuestion() {
-        try {
-            return driver.findElement(By.xpath("//h2[@class='sc-af59h9-2 hDpNkj']")).getAccessibleName();
-        }
-        catch(NoSuchElementException e) {
-            return "";
-        }
+        return driver.findElement(By.xpath("//h2[@class='sc-af59h9-2 hDpNkj']")).getAccessibleName();
     }
 
     private void typeInBox() {
-        final String QUESTION = getQuestion();
-
-        if (QUESTION.equals("")) {return;}
-
-        final WebElement BOX = driver.findElement(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']"));
-        final String ANS = BasicFunctions.findAns(words, QUESTION);
-
-        BOX.sendKeys(ANS);
+        driver.findElement(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).sendKeys(BasicFunctions.findAns(words, getQuestion()));
         pressEnter();
     }
     
