@@ -28,7 +28,10 @@ public class Memrise {
         Boolean SADL = props.getProperty("SADL").equals("true");
         username = props.getProperty("username");
         password = props.getProperty("password");
-        link = props.getProperty("link"); 
+        String filePath = props.getProperty("configPath");
+        link = props.getProperty("link");
+
+        if (!filePath.equals("")) {props = new Properties();props.load(new FileInputStream(filePath));username = props.getProperty("username");password = props.getProperty("password");}
 
         ChromeOptions options = new ChromeOptions();
 

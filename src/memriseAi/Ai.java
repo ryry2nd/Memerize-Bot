@@ -8,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.TreeMap;
-import java.util.Map.Entry;
 
 public class Ai {
     private WebDriver driver;
@@ -50,34 +48,6 @@ public class Ai {
 
     private void typeInBox() {
         driver.findElement(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).sendKeys(BasicFunctions.findAns(words, getQuestion()));
-        pressEnter();
-    }
-    
-    private void selectBoxes() {
-        HashMap<Integer, WebElement> toBeSorted = new HashMap<Integer, WebElement>();
-        TreeMap<Integer, WebElement> sortedMap;
-        List<WebElement> answerBoxes;
-        String[] boxAns;
-        String preBoxAns = "";
-
-        answerBoxes = driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']"));
-
-        boxAns = preBoxAns.split(" ");
-
-        int i = 0;
-        for (WebElement answerBox : answerBoxes) {
-            if (BasicFunctions.isIn(boxAns, answerBox.getAccessibleName())) {
-                toBeSorted.put(i, answerBox);
-            }
-            i++;
-        }
-        
-        sortedMap = BasicFunctions.sortbykey(toBeSorted);
-
-        for (Entry<Integer, WebElement> entry : sortedMap.entrySet()) {
-            entry.getValue().click();
-        }
-
         pressEnter();
     }
 
@@ -129,11 +99,11 @@ public class Ai {
 
                     else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
                         multipleChoice();}
-
-                    //else if (!driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']")).isEmpty()) {
-                    //    selectBoxes();}
                     
-                    else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {
+                    else if (!driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']")).isEmpty()) {
+                        pressEnter();}
+                    
+                        else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {
                         skipReminder();}
 
                     else if (!SADL && !driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
