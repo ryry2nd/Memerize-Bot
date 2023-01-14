@@ -1,20 +1,23 @@
 import memriseAi.Ai;
+
 import exceptions.UnPassNotFoundException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchWindowException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Memrise {
-    private ChromeDriver driver;
+    private WebDriver driver;
     private String username, password, link;
     private Ai ai;
 
@@ -41,9 +44,13 @@ public class Memrise {
 
     private void log_in() throws UnPassNotFoundException{
         WebElement un, passwd, submit;
+
         if (username.equals("") || password.equals("")) {
             throw new UnPassNotFoundException("username or password not found");
         }
+
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
 
         while (true) {
             try {
@@ -73,8 +80,11 @@ public class Memrise {
         try {driver.quit();} catch (Exception e) {System.out.println(e);}
     }
 
+    public void quit() {ai.quit();}
+
     public static void main(String[] args) throws Exception {
         Memrise bot = new Memrise();
         bot.start();
+        bot.quit();
     }
 }

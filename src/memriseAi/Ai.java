@@ -1,10 +1,10 @@
 package memriseAi;
 
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchWindowException;
+import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,18 +12,26 @@ import java.util.TreeMap;
 import java.util.Map.Entry;
 
 public class Ai {
-    private ChromeDriver driver;
+    private WebDriver driver;
     private Boolean SADL;
+    private Console console;
     private static HashMap<String, String> words = new HashMap<String, String>();
 
-    public Ai(ChromeDriver driver) {
+    public Ai(WebDriver driver) {
         this.driver = driver;
         this.SADL = true;
+        console = new Console();
     }
 
-    public Ai(ChromeDriver driver, Boolean SADL) {
+    public Ai(WebDriver driver, Boolean SADL) {
         this.driver = driver;
         this.SADL = SADL;
+        console = new Console();
+    }
+
+    public void quit() {
+        console.escape = true;
+        System.out.println("Program stopped, press enter to exit");
     }
 
     public static HashMap<String, String> getWords() {return words;}
@@ -46,10 +54,6 @@ public class Ai {
     }
     
     private void selectBoxes() {
-        final String QUESTION = getQuestion();
-
-        if (QUESTION == "") {return;}
-
         HashMap<Integer, WebElement> toBeSorted = new HashMap<Integer, WebElement>();
         TreeMap<Integer, WebElement> sortedMap;
         List<WebElement> answerBoxes;
@@ -78,11 +82,7 @@ public class Ai {
     }
 
     private void multipleChoice() {
-        final String QUESTION = getQuestion();
-
-        if (QUESTION.equals("")) {return;}
-
-        final String CORRECTANSWER = BasicFunctions.findAns(words, QUESTION);
+        final String CORRECTANSWER = BasicFunctions.findAns(words, getQuestion());
         
         if (!CORRECTANSWER.equals("")) {
             List<WebElement> answers = driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']"));;
@@ -119,9 +119,11 @@ public class Ai {
     }
 
     public void start() {
+        console.start();
+
         while (true) {
             try {
-                while (true){
+                while (!console.escape){
                     if (!driver.findElements(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).isEmpty()) {
                         typeInBox();}
 
@@ -143,9 +145,14 @@ public class Ai {
                     else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
                         learn();}
                 }
+                return;
             }
             catch (NoSuchWindowException e) {break;}
-            catch (Exception e) {driver.navigate().refresh(); System.out.println(e);}
+            catch (Exception e) {System.out.println(e);}
+
+            try {
+                driver.navigate().refresh();
+            } catch (Exception e) {System.out.println("FATAL");break;}
         }
     }
 }
