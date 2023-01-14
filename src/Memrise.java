@@ -21,6 +21,8 @@ public class Memrise {
     private String username, password, link;
     private Ai ai;
 
+
+
     public Memrise() throws FileNotFoundException, IOException, UnPassNotFoundException, InterruptedException {
         Properties props = new Properties();
         props.load(new FileInputStream("config.properties"));
@@ -49,8 +51,7 @@ public class Memrise {
             throw new UnPassNotFoundException("username or password not found");
         }
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
 
         while (true) {
             try {
@@ -58,9 +59,7 @@ public class Memrise {
                 break;
             } catch (NoSuchElementException e) {}
         }
-
         Thread.sleep(1000);
-
         while (true) {
             try {
                 un = driver.findElement(By.name("username"));
@@ -73,15 +72,10 @@ public class Memrise {
 
         un.sendKeys(username);
         passwd.sendKeys(password);
-
         submit.click();
     }
 
-    public void start() {
-        ai.start();
-        try {driver.quit();} catch (Exception e) {System.out.println(e);}
-    }
-
+    public void start() {ai.start();try {driver.quit();} catch (Exception e) {System.out.println(e);}}
     public void quit() {ai.quit();}
 
     public static void main(String[] args) throws Exception {
