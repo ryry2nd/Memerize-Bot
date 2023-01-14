@@ -21,7 +21,7 @@ public class Memrise {
     private String username, password, link;
     private Ai ai;
 
-    public Memrise() throws FileNotFoundException, IOException, UnPassNotFoundException {
+    public Memrise() throws FileNotFoundException, IOException, UnPassNotFoundException, InterruptedException {
         Properties props = new Properties();
         props.load(new FileInputStream("config.properties"));
 
@@ -29,11 +29,8 @@ public class Memrise {
         username = props.getProperty("username");
         password = props.getProperty("password");
         link = props.getProperty("link"); 
-        Boolean isHidden = props.getProperty("hidden").equals("true");
 
         ChromeOptions options = new ChromeOptions();
-
-        if (isHidden) {options.addArguments("headless");}
 
         driver = new ChromeDriver(options);
 
@@ -42,7 +39,7 @@ public class Memrise {
         ai = new Ai(driver, SADL);
     }
 
-    private void log_in() throws UnPassNotFoundException{
+    private void log_in() throws UnPassNotFoundException, InterruptedException{
         WebElement un, passwd, submit;
 
         if (username.equals("") || password.equals("")) {
@@ -58,6 +55,8 @@ public class Memrise {
                 break;
             } catch (NoSuchElementException e) {}
         }
+
+        Thread.sleep(1000);
 
         while (true) {
             try {
