@@ -66,8 +66,7 @@ public class Memrise {
                 passwd = driver.findElement(By.name("password"));
                 submit = driver.findElement(By.xpath("//button[@data-testid='signinFormSubmit']"));
                 break;
-            }
-            catch (NoSuchElementException|NoSuchWindowException e) {}
+            } catch (NoSuchElementException|NoSuchWindowException e) {}
         }
 
         un.sendKeys(username);
