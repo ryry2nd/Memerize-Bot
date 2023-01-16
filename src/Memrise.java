@@ -16,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+
+
 public class Memrise {
     private WebDriver driver;
     private String username, password, link;
@@ -34,6 +36,7 @@ public class Memrise {
         link = props.getProperty("link");
 
         if (!filePath.equals("")) {props = new Properties();props.load(new FileInputStream(filePath));username = props.getProperty("username");password = props.getProperty("password");}
+        if (link.equals("")) {link = "https://www.memrise.com/";}
 
         ChromeOptions options = new ChromeOptions();
 
@@ -41,7 +44,7 @@ public class Memrise {
 
         log_in();
 
-        ai = new Ai(driver, SADL);
+        ai = new Ai(driver, SADL, link);
     }
 
     private void log_in() throws UnPassNotFoundException, InterruptedException{
@@ -74,7 +77,7 @@ public class Memrise {
         submit.click();
     }
 
-    public void start() {ai.start();try {driver.quit();} catch (Exception e) {System.out.println(e);}}
+    public void start() {ai.start();}
     public void quit() {ai.quit();}
 
     public static void main(String[] args) throws Exception {

@@ -2,6 +2,8 @@ package memriseAi;
 
 import java.util.HashMap;
 
+
+
 public class BasicFunctions {
     public static String findAns(HashMap<String, String> words, String question) {
         String listQuestion, listAns;

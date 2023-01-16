@@ -9,10 +9,13 @@ import org.openqa.selenium.WebDriver;
 import java.util.HashMap;
 import java.util.List;
 
+
+
 public class Ai {
     private WebDriver driver;
-    private Boolean SADL;
+    private boolean SADL;
     private Console console;
+    private String link;
     private static HashMap<String, String> words = new HashMap<String, String>();
 
 
@@ -20,16 +23,19 @@ public class Ai {
     public Ai(WebDriver driver) {
         this.driver = driver;
         this.SADL = true;
+        this.link = "https://www.memrise.com/";
         console = new Console();
     }
-    public Ai(WebDriver driver, Boolean SADL) {
+    public Ai(WebDriver driver, boolean SADL, String link) {
         this.driver = driver;
         this.SADL = SADL;
+        this.link = link;
         console = new Console();
     }
 
     public void quit() {
         console.escape = true;
+        driver.quit();
         System.out.println("Program stopped, press enter to exit");
     }
 
@@ -86,16 +92,19 @@ public class Ai {
         pressEnter();
     }
 
-
-
     public void start() {
         console.start();
+        long clock;
 
         while (true) {
+            clock = System.currentTimeMillis();
             try {
                 while (!console.escape){
                     if (!driver.findElements(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).isEmpty()) {
                         typeInBox();}
+
+                    else if (!SADL && !driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
+                        if ((System.currentTimeMillis() - clock) > (5 * 60000)) {driver.get(link); clock = System.currentTimeMillis();} else {pressEnter();}}
 
                     else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
                         multipleChoice();}
@@ -106,24 +115,19 @@ public class Ai {
                     else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {
                         skipReminder();}
 
-                    else if (!SADL && !driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
-                        pressEnter();}
-
                     else if (!driver.findElements(By.xpath("//a[@aria-label='Learn new words']")).isEmpty()) {
                         pressEnter();}
                     
                     else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
                         learn();}
-                        
                 }
                 return;
             }
+
             catch (NoSuchWindowException e) {break;}
             catch (Exception e) {System.out.println(e);}
 
-            try {
-                driver.navigate().refresh();
-            } catch (Exception e) {System.out.println("FATAL");break;}
+            try {driver.get(link);} catch (Exception e) {System.out.println("FATAL");break;}
         }
     }
 }

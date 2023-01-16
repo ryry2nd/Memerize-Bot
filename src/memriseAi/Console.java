@@ -2,6 +2,8 @@ package memriseAi;
 
 import java.util.Scanner;
 
+
+
 public class Console extends Thread {
     private Scanner sc;
     public boolean escape;
