@@ -54,8 +54,6 @@ public class Memrise {
             throw new UnPassNotFoundException("username or password not found");
         }
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
-
         while (true) {
             try {
                 driver.get(link);
