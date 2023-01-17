@@ -117,6 +117,9 @@ public class Ai {
 
                     else if (!driver.findElements(By.xpath("//a[@aria-label='Learn new words']")).isEmpty()) {
                         pressEnter();}
+
+                    else if (!driver.findElements(By.xpath("//div[@class='sc-s6iyrn-2 hldCEU']")).isEmpty()) {
+                        driver.get(link);}
                     
                     else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
                         learn();}
