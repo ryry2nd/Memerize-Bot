@@ -15,7 +15,6 @@ public class Ai {
     private WebDriver driver;
     private boolean SADL;
     private Console console;
-    private String link;
     private static HashMap<String, String> words = new HashMap<String, String>();
 
 
@@ -23,14 +22,12 @@ public class Ai {
     public Ai(WebDriver driver) {
         this.driver = driver;
         this.SADL = true;
-        this.link = "https://www.memrise.com/";
-        console = new Console();
+        console = new Console("https://www.memrise.com/");
     }
     public Ai(WebDriver driver, boolean SADL, String link) {
         this.driver = driver;
         this.SADL = SADL;
-        this.link = link;
-        console = new Console();
+        console = new Console(link);
     }
 
     public void quit() {
@@ -104,7 +101,7 @@ public class Ai {
                         typeInBox();}
 
                     else if (!SADL && !driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
-                        if ((System.currentTimeMillis() - clock) > (5 * 60000)) {driver.get(link); clock = System.currentTimeMillis();} else {pressEnter();}}
+                        if ((System.currentTimeMillis() - clock) > (5 * 60000)) {driver.get(console.getLink()); clock = System.currentTimeMillis();} else {pressEnter();}}
 
                     else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
                         multipleChoice();}
@@ -119,7 +116,7 @@ public class Ai {
                         pressEnter();}
 
                     else if (!driver.findElements(By.xpath("//div[@class='sc-s6iyrn-2 hldCEU']")).isEmpty()) {
-                        driver.get(link);}
+                        driver.get(console.getLink());}
                     
                     else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
                         learn();}
@@ -130,7 +127,7 @@ public class Ai {
             catch (NoSuchWindowException e) {break;}
             catch (Exception e) {System.out.println(e);}
 
-            try {driver.get(link);} catch (Exception e) {System.out.println("FATAL");break;}
+            try {driver.get(console.getLink());} catch (Exception e) {System.out.println("FATAL");break;}
         }
     }
 }
