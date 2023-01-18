@@ -1,6 +1,11 @@
 package memriseAi;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import exceptions.UnPassNotFoundException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchWindowException;
@@ -15,17 +20,22 @@ public class Ai {
     private WebDriver driver;
     private boolean SADL;
     private Console console;
+    private String username, password;
     private static HashMap<String, String> words = new HashMap<String, String>();
 
 
 
-    public Ai(WebDriver driver) {
-        this.driver = driver;
+    public Ai(ChromeOptions options, String username, String password) {
+        this.driver = new ChromeDriver(options);
+        this.username = username;
+        this.password = password;
         this.SADL = true;
         console = new Console("https://www.memrise.com/");
     }
-    public Ai(WebDriver driver, boolean SADL, String link) {
-        this.driver = driver;
+    public Ai(ChromeOptions options, String username, String password, boolean SADL, String link) {
+        this.driver = new ChromeDriver(options);
+        this.username = username;
+        this.password = password;
         this.SADL = SADL;
         console = new Console(link);
     }
@@ -89,9 +99,10 @@ public class Ai {
         pressEnter();
     }
 
-    public void start() {
+    public void start() throws UnPassNotFoundException, InterruptedException {
         console.start();
         long clock;
+        BasicFunctions.log_in(driver, username, password, console.getLink());
 
         while (true) {
             clock = System.currentTimeMillis();
