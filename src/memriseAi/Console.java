@@ -38,7 +38,7 @@ public class Console extends Thread {
             if (command.equals("exit") || command.equals("stop")) {escape = true;}
             else if (command.equals("help")) {System.out.println(help);}
             else if (command.equals("")) {}
-            else if (command.equals("chlink")) {link = args[0];}
+            else if (command.equals("chlink")) {link = args[0]; refresh = true;}
             else if (command.equals("refresh")) {refresh = true;}
             else if (command.equals("cactuses")) {System.out.println("Unknown command \"\033[1mCACTI\033[0m\" use /help you moron just like literally every other command line in existence");}
             else {System.out.println("Unknown command \"" + command + "\" use /help you moron just like literally every other command line in existence");}
