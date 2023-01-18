@@ -101,7 +101,7 @@ public class Ai {
                         typeInBox();}
 
                     else if (!SADL && !driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
-                        if ((System.currentTimeMillis() - clock) > (5 * 60000)) {driver.get(console.getLink()); clock = System.currentTimeMillis();} else {pressEnter();}}
+                        if (((System.currentTimeMillis() - clock) > (5 * 60000)) || console.refresh) {driver.get(console.getLink()); clock = System.currentTimeMillis(); console.refresh = false;} else {pressEnter();}}
 
                     else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
                         multipleChoice();}
