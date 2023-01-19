@@ -84,7 +84,8 @@ public class Ai {
         final String QUESTION = driver.findElement(By.xpath("//h3[@class='sc-18hl9gu-6 hjLhBn']")).getAccessibleName();
         final String ANS = driver.findElement(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).getAccessibleName();
         
-        if (!words.containsKey(QUESTION)) {words.put(QUESTION, ANS);}
+        if (!words.containsKey(QUESTION)) {
+            words.put(QUESTION, ANS);words.put(ANS, QUESTION);}
         
         BasicFunctions.pressEnter(driver);
     }
