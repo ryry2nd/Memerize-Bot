@@ -15,8 +15,9 @@ import java.util.List;
 
 
 
-public class Ai {
+public class Ai extends BasicFunctions{
     private WebDriver driver;
+    private ChromeOptions options;
     private boolean SADL;
     private Console console;
     private String username, password;
@@ -25,14 +26,14 @@ public class Ai {
 
 
     public Ai(ChromeOptions options, String username, String password) {
-        this.driver = new ChromeDriver(options);
+        this.options = options;
         this.username = username;
         this.password = password;
         this.SADL = true;
         console = new Console("https://www.memrise.com/");
     }
     public Ai(ChromeOptions options, String username, String password, boolean SADL, String link) {
-        this.driver = new ChromeDriver(options);
+        this.options = options;
         this.username = username;
         this.password = password;
         this.SADL = SADL;
@@ -50,11 +51,11 @@ public class Ai {
 
 
     private void typeInBox() {
-        driver.findElement(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).sendKeys(BasicFunctions.findAns(words, BasicFunctions.getQuestion(driver)));
-        BasicFunctions.pressEnter(driver);
+        driver.findElement(By.xpath("//input[@class='sc-1v1crxt-4 kHCLct']")).sendKeys(findAns(words, getQuestion(driver)));
+        pressEnter(driver);
     }
     private void multipleChoice() {
-        final String CORRECTANSWER = BasicFunctions.findAns(words, BasicFunctions.getQuestion(driver));
+        final String CORRECTANSWER = findAns(words, getQuestion(driver));
         
         if (!CORRECTANSWER.equals("")) {
             List<WebElement> answers = driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']"));;
@@ -78,7 +79,7 @@ public class Ai {
             }
         }
 
-        BasicFunctions.pressEnter(driver);
+        pressEnter(driver);
     }
     private void learn() {
         final String QUESTION = driver.findElement(By.xpath("//h3[@class='sc-18hl9gu-6 hjLhBn']")).getAccessibleName();
@@ -87,14 +88,17 @@ public class Ai {
         if (!words.containsKey(QUESTION)) {
             words.put(QUESTION, ANS);words.put(ANS, QUESTION);}
         
-        BasicFunctions.pressEnter(driver);
+        pressEnter(driver);
     }
 
 
     public void start() throws UnPassNotFoundException, InterruptedException {
-        console.start();
         long clock;
-        BasicFunctions.log_in(driver, username, password, console.getLink());
+        
+        console.start();
+
+        driver = new ChromeDriver(options);
+        log_in(driver, username, password, console.getLink());
 
         while (true) {
             clock = System.currentTimeMillis();
@@ -104,25 +108,27 @@ public class Ai {
                         typeInBox();}
 
                     else if (!SADL && !driver.findElements(By.xpath("//div[@data-testid='course-leaderboard']")).isEmpty()) {
-                        if (((System.currentTimeMillis() - clock) > (5 * 60000)) || console.refresh) {driver.get(console.getLink()); clock = System.currentTimeMillis(); console.refresh = false;} else {BasicFunctions.pressEnter(driver);}}
+                        if (((System.currentTimeMillis() - clock) > (5 * 60000)) || console.refresh) {driver.get(console.getLink()); clock = System.currentTimeMillis(); console.refresh = false;} else {pressEnter(driver);}}
 
                     else if (!driver.findElements(By.xpath("//button[@class='sc-bcXHqe iDigtw']")).isEmpty()) {
                         multipleChoice();}
                     
                     else if (!driver.findElements(By.xpath("//button[@class='sc-1umog8t-0 kFaJKr']")).isEmpty()) {
-                        BasicFunctions.pressEnter(driver);}
+                        pressEnter(driver);}
                     
                     else if (!driver.findElements(By.xpath("//button[@class='sc-1dxc4vq-2 fjYiwU']")).isEmpty()) {
-                        BasicFunctions.skipReminder(driver);}
+                        skipReminder(driver);}
 
                     else if (!driver.findElements(By.xpath("//a[@aria-label='Learn new words']")).isEmpty()) {
-                        BasicFunctions.pressEnter(driver);}
+                        pressEnter(driver);}
 
                     else if (!driver.findElements(By.xpath("//div[@class='sc-s6iyrn-2 hldCEU']")).isEmpty()) {
                         driver.get(console.getLink());}
                     
                     else if (!driver.findElements(By.xpath("//h2[@class='sc-18hl9gu-5 gXQFYZ']")).isEmpty()) {
                         learn();}
+
+                    else if (console.refresh) {driver.get(console.getLink()); console.refresh = false;}
                 }
                 return;
             }

@@ -5,10 +5,11 @@ import java.util.Scanner;
 
 
 public class Console extends Thread {
-    private Scanner sc;
     public boolean escape;
-    private String link;
     public boolean refresh;
+
+    private Scanner sc;
+    private String link;
 
     private String help = "help: helps you\nexit: exits\nchlink: changes link\nrefresh: refreshes";
 
@@ -35,9 +36,9 @@ public class Console extends Thread {
             args = new String[wholeCommand.length-1];
             for (i = 1; i < wholeCommand.length; i++) {args[i - 1] = wholeCommand[i];}
 
-            if (command.equals("exit") || command.equals("stop")) {escape = true;}
+            if (command.equals("")) {}
+            else if (command.equals("exit") || command.equals("stop")) {escape = true;}
             else if (command.equals("help")) {System.out.println(help);}
-            else if (command.equals("")) {}
             else if (command.equals("chlink")) {link = args[0]; refresh = true;}
             else if (command.equals("refresh")) {refresh = true;}
             else if (command.equals("cactuses")) {System.out.println("Unknown command \"\033[1mCACTI\033[0m\" use /help you moron just like literally every other command line in existence");}
