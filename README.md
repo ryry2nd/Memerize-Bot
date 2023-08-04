@@ -18,3 +18,6 @@ For best performance:
 plug the computer into an ethernet cable
 if it is a laptop, plug it in
 have good wifi
+
+# Disclaimer
+Do not use this maliciously, I have been using this on a joke account for fun and I do not take any responsibility for any misdeads one can create using this program
